@@ -17,7 +17,7 @@ api_key = os.environ["API_KEY_ODOO"]
 
 # Configuration PostgreSQL
 database_url = os.environ["DATABASE_URL"]
-conn = psycopg2.connect(dj_database_url.config(default=database_url))
+conn = psycopg2.connect(dj_database_url.config(default=database_url, conn_max_age=600, ssl_require=True))
 
 cursor = conn.cursor()
 
