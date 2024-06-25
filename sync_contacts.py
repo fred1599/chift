@@ -17,7 +17,7 @@ api_key = os.environ["API_KEY_ODOO"]
 
 # Configuration PostgreSQL
 database_url = os.environ["DATABASE_URL"]
-db_config = dj_database_url.parse(database_url, conn_max_age=600, ssl_require=True)
+db_config = dj_database_url.config(default=database_url)
 dsn = f"dbname={db_config['NAME']} user={db_config['USER']} password={db_config['PASSWORD']} host={db_config['HOST']} port={db_config['PORT']} sslmode=require"
 
 conn = psycopg2.connect(dsn)
