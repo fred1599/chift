@@ -17,7 +17,10 @@ api_key = os.environ["API_KEY_ODOO"]
 
 # Configuration PostgreSQL
 database_url = os.environ["DATABASE_URL"]
-conn = psycopg2.connect(dj_database_url.config(default=database_url, conn_max_age=600, ssl_require=True))
+db_config = dj_database_url.parse(database_url, conn_max_age=600, ssl_require=True)
+dsn = f"dbname={db_config['NAME']} user={db_config['USER']} password={db_config['PASSWORD']} host={db_config['HOST']} port={db_config['PORT']} sslmode=require"
+
+conn = psycopg2.connect(dsn)
 
 cursor = conn.cursor()
 
@@ -52,9 +55,3 @@ def sync_contacts():
                 INSERT INTO contacts_contact (odoo_id, name, email, phone) VALUES (%s, %s, %s, %s)
             ''', (contact_id, name, email, phone))
 
-    conn.commit()
-
-if __name__ == '__main__':
-    while True:
-        sync_contacts()
-        time.sleep(600)  # Exécuter toutes les 10 minutes
