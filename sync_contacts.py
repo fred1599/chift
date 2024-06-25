@@ -24,13 +24,12 @@ logger.info("URL_DATABASE: %s", database_url)
 
 try:
     db_config = dj_database_url.config(default=database_url)
-    logger.info("db_config: %s", repr(db_config))
     conn = psycopg2.connect(
-        dbname=db_config['dbname'],
-        user=db_config['user'],
-        password=db_config['password'],
-        host=db_config['host'],
-        port=db_config['port'],
+        dbname=db_config['NAME'],
+        user=db_config['USER'],
+        password=db_config['PASSWORD'],
+        host=db_config['HOST'],
+        port=db_config['PORT'],
         sslmode='require'
     )
     cursor = conn.cursor()
