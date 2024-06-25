@@ -2,6 +2,7 @@ import os
 import xmlrpc.client
 import psycopg2
 import time
+import dj_database_url
 
 from dotenv import load_dotenv
 
@@ -14,14 +15,9 @@ db = os.environ["DB_ODOO"]
 username = os.environ["USERNAME_ODOO"]
 api_key = os.environ["API_KEY_ODOO"]
 
-# Configuration PostgreSQL
-conn = psycopg2.connect(
-    dbname=os.environ["DB_NAME"],
-    user=os.environ["USER"],
-    password=os.environ["PASSWORD"],
-    host=os.environ["HOST"],
-    port=os.environ["PORT"]
-)
+# Configuration et connection PostgreSQL
+database_url = os.environ["URL_DATABASE"]
+conn = psycopg2.connect(dj_database_url.parse(database_url))
 
 cursor = conn.cursor()
 
