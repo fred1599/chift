@@ -19,11 +19,12 @@ username = os.environ["USERNAME_ODOO"]
 api_key = os.environ["API_KEY_ODOO"]
 
 # Configuration PostgreSQL
-database_url = os.environ["DATABASE_URL"]
-logger.info("DATABASE_URL: %s", database_url)
+database_url = os.environ["URL_DATABASE"]
+logger.info("URL_DATABASE: %s", database_url)
 
 try:
-    db_config = dj_database_url.parse(database_url)
+    db_config = dj_database_url.config(default=database_url)
+    logger.info("db_config: %s", repr(db_config))
     conn = psycopg2.connect(
         dbname=db_config['dbname'],
         user=db_config['user'],
