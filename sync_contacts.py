@@ -15,9 +15,9 @@ db = os.environ["DB_ODOO"]
 username = os.environ["USERNAME_ODOO"]
 api_key = os.environ["API_KEY_ODOO"]
 
-# Configuration et connection PostgreSQL
-database_url = os.environ["URL_DATABASE"]
-conn = psycopg2.connect(dj_database_url.parse(database_url))
+# Configuration PostgreSQL
+database_url = os.environ["DATABASE_URL"]
+conn = psycopg2.connect(dj_database_url.config(default=database_url))
 
 cursor = conn.cursor()
 
@@ -28,7 +28,7 @@ models = xmlrpc.client.ServerProxy('{}/xmlrpc/2/object'.format(url))
 
 def sync_contacts():
     # Récupérer les contacts depuis Odoo
-    contact_ids = models.execute_kw(db, uid, api_key, 'res.partner', 'search', [[['is_company', '=', True]]], {'offset': 10, 'limit': 5})
+    contact_ids = models.execute_kw(db, uid, api_key, 'res.partner', 'search', [[['is_company', '=', True]]], {'offset': 0, 'limit': 10})
     contacts = models.execute_kw(db, uid, api_key, 'res.partner', 'read', [contact_ids])
 
     for contact in contacts:
