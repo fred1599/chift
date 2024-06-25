@@ -1,0 +1,9 @@
+django==5.0.6
+psycopg2-binary==2.9.9
+python-dotenv==1.0.1
+django==5.0.6
+djangorestframework==3.15.2
+djangorestframework_simplejwt==5.3.1
+gunicorn==22.0.0
+dj_database_url==2.2.0
+whitenoise==6.7.0
