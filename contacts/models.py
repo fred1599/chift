@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class Contact(models.Model):
     odoo_id = models.IntegerField(unique=True)
     name = models.CharField(max_length=255)
