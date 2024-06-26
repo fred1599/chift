@@ -12,8 +12,8 @@ Ce projet Django permet de synchroniser les contacts depuis Odoo vers une base d
 
 1. **Clonez le dépôt** :
    ```sh
-   git clone https://github.com/votre-nom-d-utilisateur/votre-repo.git
-   cd votre-repo
+   git clone git@github.com:fred1599/chift.git
+   cd chift
 
 2. **Installez les dépendances** :
     ```sh
