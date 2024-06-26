@@ -4,6 +4,7 @@ import psycopg2
 import dj_database_url
 from dotenv import load_dotenv
 import logging
+import time
 
 # Configurer la journalisation
 logging.basicConfig(level=logging.INFO)
@@ -104,4 +105,6 @@ def sync_contacts():
 
 
 # Appeler la fonction de synchronisation
-sync_contacts()
+while True:
+    sync_contacts()
+    time.sleep(600)
